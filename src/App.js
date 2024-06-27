@@ -86,36 +86,6 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div className="App_Layout">
-        <div className='Header'>
-          <ArrowCircleLeftFilled className={classes.arrow}/>
-          <h1 className=''>Login</h1>
-          <p>Welcome back! <br />Please login to continue.</p>
-        </div>
-        <div className='Fields'>
-          <div className='Box'>
-            <MailFilled className={classes.icons} />
-            <div className='Placeholder'>
-              <h6>Email Adress</h6>
-              <p>Your email address</p>
-            </div>
-          </div>
-          <div className='Box'>
-            <LockClosedFilled className={classes.icons} />
-            <div className=''>
-              <h6>Password</h6>
-              <p>Enter your password</p>
-            </div >
-            <EyeFilled className={classes.icons} />
-            <div class="row align-items-center">
-            <div class="col-auto">
-              <input placeholder='Enter your password' type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" />
-            </div>
-          </div>
-          </div>
-        </div>
-      </div> */}
-
         <Login />
       
     </div>
