@@ -17,6 +17,8 @@ import { FaFacebook } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 
+import BgImage from './assets/background_image.jpg'
+
 const useStyles = makeStyles({
   arrow: { 
     color: '#8B8B8B',
@@ -67,39 +69,41 @@ const Login = () => {
   }
   return (
     <div className="login-container">
-        <div className='header'>
-          <button className='back-button'><ArrowCircleLeftFilled className={classes.arrow}/></button>
-          <h1 className=''>Login</h1>
-          <p>Welcome back! <br />Please login to continue.</p>
+          <div className='bg-image'>
+          </div>
+      <div className='header'>
+        <button className='back-button'><ArrowCircleLeftFilled className={classes.arrow}/></button>
+        <h1 className=''>Login</h1>
+        <p>Welcome back! <br />Please login to continue.</p>
+      </div>
+      <div className="login-box">
+        <div className="input-wrapper">
+          <MailFilled className={classes.icons} />
+          <label>Email Address</label>
+          <input
+            type="email"
+            placeholder="Your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-    <div className="login-box">
-      <div className="input-wrapper">
-        <MailFilled className={classes.icons} />
-        <label>Email Address</label>
-        <input
-          type="email"
-          placeholder="Your email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div className="input-wrapper">
+        <LockClosedFilled className={classes.icons} />
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="show-password"><EyeFilled className={classes.icons} /></button>
+        </div>
+        <button className="login-button" onClick={handleLogin}>Login</button>
+          <a href="#" className="forgot-password">Forgot Password?</a>
+          <SocialAccounts />
+          
       </div>
-      <div className="input-wrapper">
-      <LockClosedFilled className={classes.icons} />
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="show-password"><EyeFilled className={classes.icons} /></button>
-      </div>
-      <button className="login-button" onClick={handleLogin}>Login</button>
-        <a href="#" className="forgot-password">Forgot Password?</a>
-        <SocialAccounts />
-        
     </div>
-  </div>
   )
 }
 
@@ -111,9 +115,13 @@ function App() {
   return (
     <div className="App">
         <Login />
-      
+
     </div>
   );
 }
 
 export default App;
+
+function toggleContent() {
+
+}
