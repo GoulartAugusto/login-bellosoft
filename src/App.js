@@ -2,6 +2,7 @@ import './scss/App.scss';
 import 'bootstrap/dist/css/bootstrap.css'
 
 import './scss/Login.scss'
+import './scss/Social.scss'
 
 import React, { useState } from 'react'
 
@@ -10,6 +11,11 @@ import { ArrowCircleLeftFilled } from '@fluentui/react-icons';
 import { MailFilled } from '@fluentui/react-icons';
 import { LockClosedFilled } from '@fluentui/react-icons';
 import { EyeFilled } from '@fluentui/react-icons';
+
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import { FaApple } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 const useStyles = makeStyles({
   arrow: { 
@@ -26,6 +32,28 @@ const useStyles = makeStyles({
     transform: 'translateY(-50%)',
    }
 });
+
+const SocialAccounts = () => {
+  const [google, setGoogle] = useState()
+  const [facebook, setFacebook] = useState()
+  const [apple, setApple] = useState()
+  const [twitter, setTwitter] = useState()
+
+  return (
+    <div>
+      <div className="social-accounts">
+        <p>Or Continue with Social Accounts</p>
+        <div className='social-icons'>
+          <button className='social-button'><FcGoogle /></button>
+          <button className='social-button'><FaFacebook /></button>
+          <button className='social-button'><FaApple /></button>
+          <button className='social-button'><FaTwitter /></button>
+        </div>
+        <p>Don't have an account? <a href='#' className='forgot-password'>Create Now</a></p>
+      </div>
+    </div>
+  )
+}
 
 const Login = () => {
   const classes = useStyles()
@@ -68,12 +96,8 @@ const Login = () => {
       </div>
       <button className="login-button" onClick={handleLogin}>Login</button>
         <a href="#" className="forgot-password">Forgot Password?</a>
-        <div className="social-login">
-          <button className="social-button google">G</button>
-          <button className="social-button facebook">f</button>
-          <button className="social-button apple"></button>
-          <button className="social-button twitter">t</button>
-        </div>
+        <SocialAccounts />
+        
     </div>
   </div>
   )
