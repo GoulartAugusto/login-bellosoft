@@ -65,30 +65,42 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const handleLogin = () => {
-    // Adicione aqui a lógica de login
-    console.log('Email:', email);
-    console.log('Password:', password);
-  }
+    if (validateEmail(email) && validatePassword(password)) {
+      console.log('Email:', email);
+      console.log('Password:', password);
+    }
+  };
 
   const toggleShowPassword = () => {
     setShowPassword(prevState => !prevState);
   };
 
-  // const Logged = true
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError('Please enter a valid email address');
+      return false;
+    } else {
+      setEmailError('');
+      return true;
+    }
+  };
 
-  //   const Header = document.getElementById('header-content')
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setPasswordError('Password incorrect. The password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character');
+      return false;
+    } else {
+      setPasswordError('');
+      return true;
+    }
+  };
 
-  //   if (Logged === true) {
-  //     Header.innerHTML = `
-  //     <button className='back-button'><ArrowCircleLeftFilled className={classes.arrow}/></button>
-  //       <h1 className=''>Login</h1>
-  //       <p>Welcome back! <br />Please login to continue.</p>
-  //     `;
-  //   } else {
-  //     Header.innerHTML = `<div>Bacon</div>`
-  //   }
   return (
     <div className="login-container">
           <div className='bg-image'>
@@ -107,7 +119,9 @@ const Login = () => {
             placeholder="Your email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => validateEmail(email)}
           />
+          {emailError && <span className="error">{emailError}</span>}
         </div>
         <div className="input-wrapper">
         <LockClosedFilled className={classes.icons} />
@@ -117,10 +131,14 @@ const Login = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            onBlur={() => validatePassword(password)}
           />
           <button className="show-password" onClick={toggleShowPassword}>
             <EyeFilled className={classes.icons} />
           </button>
+        </div>
+        <div>
+          {passwordError && <span className="error">{passwordError}</span>}
         </div>
         <button className="login-button" onClick={handleLogin}>Login</button>
           <a href="#" className="forgot-password">Forgot Password?</a>
