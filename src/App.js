@@ -17,7 +17,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaApple } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 
-import BgImage from './assets/background_image.jpg'
+import Layout from './Layout'
 
 const useStyles = makeStyles({
   arrow: { 
@@ -34,6 +34,9 @@ const useStyles = makeStyles({
     transform: 'translateY(-50%)',
    }
 });
+
+
+
 
 const SocialAccounts = () => {
   const [google, setGoogle] = useState()
@@ -61,12 +64,85 @@ const Login = () => {
   const classes = useStyles()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = () => {
     // Adicione aqui a lógica de login
     console.log('Email:', email);
     console.log('Password:', password);
   }
+
+  const toggleShowPassword = () => {
+    setShowPassword(prevState => !prevState);
+  };
+
+  // const Logged = true
+
+  //   const Header = document.getElementById('header-content')
+
+  //   if (Logged === true) {
+  //     Header.innerHTML = `
+  //     <button className='back-button'><ArrowCircleLeftFilled className={classes.arrow}/></button>
+  //       <h1 className=''>Login</h1>
+  //       <p>Welcome back! <br />Please login to continue.</p>
+  //     `;
+  //   } else {
+  //     Header.innerHTML = `<div>Bacon</div>`
+  //   }
+  return (
+    <div className="login-container">
+          <div className='bg-image'>
+          </div>
+      <div className='header' id='header-content'>
+        <button className='back-button'><ArrowCircleLeftFilled className={classes.arrow}/></button>
+        <h1 className=''>Login</h1>
+        <p>Welcome back! <br />Please login to continue</p>
+      </div>
+      <div className="login-box">
+        <div className="input-wrapper">
+          <MailFilled className={classes.icons} />
+          <label>Email Address</label>
+          <input
+            type="email"
+            placeholder="Your email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="input-wrapper">
+        <LockClosedFilled className={classes.icons} />
+          <label>Password</label>
+          <input
+            type={showPassword? "text" : "password"}
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button className="show-password" onClick={toggleShowPassword}>
+            <EyeFilled className={classes.icons} />
+          </button>
+        </div>
+        <button className="login-button" onClick={handleLogin}>Login</button>
+          <a href="#" className="forgot-password">Forgot Password?</a>
+          <SocialAccounts />
+          
+      </div>
+    </div>
+  )
+}
+
+const CreateAccount = () => {
+  const classes = useStyles()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleCreate = () => {
+    // Adicione aqui a lógica de login
+    console.log('Email:', email);
+    console.log('Password:', password);
+  }
+  
   return (
     <div className="login-container">
           <div className='bg-image'>
@@ -98,7 +174,7 @@ const Login = () => {
           />
           <button className="show-password"><EyeFilled className={classes.icons} /></button>
         </div>
-        <button className="login-button" onClick={handleLogin}>Login</button>
+        <button className="login-button" onClick={handleCreate}>Login</button>
           <a href="#" className="forgot-password">Forgot Password?</a>
           <SocialAccounts />
           
@@ -108,20 +184,16 @@ const Login = () => {
 }
 
 
-
-
 function App() {
 
   return (
     <div className="App">
         <Login />
-
+        {/* <CreateAccount /> */}
+        {/* <Layout /> */}
     </div>
   );
 }
 
 export default App;
 
-function toggleContent() {
-
-}
